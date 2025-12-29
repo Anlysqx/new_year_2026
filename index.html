@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌊 2026 大连跨年之旅</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7f6f3;
+            --bg-tertiary: #f1f1ef;
+            --bg-hover: #efefef;
+            --text-primary: #37352f;
+            --text-secondary: #6b6b6b;
+            --text-muted: #9b9a97;
+            --text-light: #b4b4b4;
+            --border: #e3e2e0;
+            --border-dark: #d3d3d3;
+            
+            /* Notion 颜色系统 */
+            --red: #e03e3e;
+            --red-bg: #fbe4e4;
+            --orange: #d9730d;
+            --orange-bg: #faebdd;
+            --yellow: #cb912f;
+            --yellow-bg: #fef3dd;
+            --green: #448361;
+            --green-bg: #d3f5d6;
+            --blue: #2383e2;
+            --blue-bg: #d3e5ef;
+            --purple: #9065b0;
+            --purple-bg: #e8deee;
+            --pink: #c14c8a;
+            --pink-bg: #f4dfeb;
+            --brown: #937264;
+            --brown-bg: #e9e5e3;
+            --gray: #787774;
+            --gray-bg: #ebeaea;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', ui-sans-serif, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* ============ LAYOUT ============ */
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 96px 100px;
+        }
+
+        /* ============ COVER ============ */
+        .cover {
+            width: 100%;
+            height: 320px;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.3), transparent 60%);
+        }
+
+        /* ============ HEADER ============ */
+        .page-header {
+            margin-top: -60px;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .page-icon {
+            font-size: 78px;
+            line-height: 1;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .page-title {
+            font-family: 'Noto Serif SC', Georgia, serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .page-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* ============ PROPERTIES ============ */
+        .properties {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .property {
+            display: flex;
+            align-items: center;
+            padding: 6px 0;
+            min-width: 200px;
+            flex: 1;
+        }
+
+        .property-name {
+            font-size: 14px;
+            color: var(--text-muted);
+            width: 100px;
+            flex-shrink: 0;
+        }
+
+        .property-value {
+            font-size: 14px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ============ NAV TABS ============ */
+        .nav-bar {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 0;
+            margin: 0 -10px 24px;
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 6px 12px;
+            background: transparent;
+            border: none;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.15s ease;
+        }
+
+        .nav-tab:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .nav-tab.active {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        /* ============ SECTIONS ============ */
+        .day-section {
+            display: none;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .day-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ============ HEADINGS ============ */
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 32px 0 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 24px 0 8px;
+        }
+
+        /* ============ PARAGRAPH ============ */
+        p {
+            margin: 4px 0;
+            color: var(--text-primary);
+        }
+
+        .text-gray {
+            color: var(--text-secondary);
+        }
+
+        /* ============ CALLOUT ============ */
+        .callout {
+            display: flex;
+            gap: 12px;
+            padding: 16px 16px 16px 12px;
+            border-radius: 4px;
+            margin: 8px 0;
+        }
+
+        .callout-gray { background: var(--gray-bg); }
+        .callout-brown { background: var(--brown-bg); }
+        .callout-orange { background: var(--orange-bg); }
+        .callout-yellow { background: var(--yellow-bg); }
+        .callout-green { background: var(--green-bg); }
+        .callout-blue { background: var(--blue-bg); }
+        .callout-purple { background: var(--purple-bg); }
+        .callout-pink { background: var(--pink-bg); }
+        .callout-red { background: var(--red-bg); }
+
+        .callout-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .callout-content {
+            flex: 1;
+            font-size: 15px;
+        }
+
+        /* ============ DATABASE TABLE ============ */
+        .database {
+            margin: 16px 0;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .db-header {
+            display: grid;
+            grid-template-columns: 90px 1fr 110px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .db-header > div {
+            padding: 8px 12px;
+        }
+
+        .db-row {
+            display: grid;
+            grid-template-columns: 90px 1fr 110px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.1s ease;
+        }
+
+        .db-row:last-child {
+            border-bottom: none;
+        }
+
+        .db-row:hover {
+            background: var(--bg-secondary);
+        }
+
+        .db-row > div {
+            padding: 10px 12px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .db-time {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-family: ui-monospace, monospace;
+        }
+
+        .db-content {
+            flex-direction: column;
+            align-items: flex-start !important;
+            gap: 2px;
+        }
+
+        .db-title {
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .db-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .db-tags {
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        /* ============ TAGS ============ */
+        .tag {
+            display: inline-flex;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .tag-red { background: var(--red-bg); color: var(--red); }
+        .tag-orange { background: var(--orange-bg); color: var(--orange); }
+        .tag-yellow { background: var(--yellow-bg); color: var(--yellow); }
+        .tag-green { background: var(--green-bg); color: var(--green); }
+        .tag-blue { background: var(--blue-bg); color: var(--blue); }
+        .tag-purple { background: var(--purple-bg); color: var(--purple); }
+        .tag-pink { background: var(--pink-bg); color: var(--pink); }
+        .tag-gray { background: var(--gray-bg); color: var(--gray); }
+        .tag-brown { background: var(--brown-bg); color: var(--brown); }
+
+        /* ============ GALLERY ============ */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .gallery-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .gallery-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .gallery-cover {
+            height: 140px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .gallery-cover::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
+        }
+
+        .gallery-cover.blue { background: var(--blue-bg); }
+        .gallery-cover.orange { background: var(--orange-bg); }
+        .gallery-cover.purple { background: var(--purple-bg); }
+        .gallery-cover.green { background: var(--green-bg); }
+        .gallery-cover.pink { background: var(--pink-bg); }
+        .gallery-cover.yellow { background: var(--yellow-bg); }
+
+        .gallery-body {
+            padding: 14px;
+        }
+
+        .gallery-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .gallery-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .gallery-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* ============ TOGGLE ============ */
+        .toggle {
+            margin: 8px 0;
+        }
+
+        .toggle-header {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px;
+            margin-left: -4px;
+            border-radius: 3px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.1s ease;
+        }
+
+        .toggle-header:hover {
+            background: var(--bg-hover);
+        }
+
+        .toggle-arrow {
+            font-size: 12px;
+            color: var(--text-muted);
+            transition: transform 0.2s ease;
+            width: 20px;
+            text-align: center;
+        }
+
+        .toggle.open .toggle-arrow {
+            transform: rotate(90deg);
+        }
+
+        .toggle-title {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .toggle-content {
+            display: none;
+            padding-left: 24px;
+            margin-top: 4px;
+        }
+
+        .toggle.open .toggle-content {
+            display: block;
+        }
+
+        /* ============ FOOD SECTION ============ */
+        .food-list {
+            margin: 12px 0;
+        }
+
+        .food-item {
+            display: flex;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            align-items: flex-start;
+        }
+
+        .food-item:last-child {
+            border-bottom: none;
+        }
+
+        .food-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            margin-right: 14px;
+            flex-shrink: 0;
+        }
+
+        .food-info {
+            flex: 1;
+        }
+
+        .food-name {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .food-address {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .food-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ============ CHECKLIST ============ */
+        .checklist {
+            margin: 8px 0;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+            font-size: 15px;
+        }
+
+        .check-item::before {
+            content: '☐';
+            color: var(--blue);
+            font-size: 16px;
+        }
+
+        /* ============ QUOTE ============ */
+        .quote {
+            border-left: 3px solid var(--text-primary);
+            padding-left: 14px;
+            margin: 8px 0;
+            color: var(--text-primary);
+        }
+
+        /* ============ DIVIDER ============ */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 24px 0;
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            text-align: center;
+            padding: 48px 0 32px;
+            margin-top: 48px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ============ IMAGE BANNER ============ */
+        .image-banner {
+            width: 100%;
+            height: 180px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            margin: 16px 0;
+            position: relative;
+        }
+
+        .image-banner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+            border-radius: 8px;
+        }
+
+        .image-banner-text {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            z-index: 1;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .page {
+                padding: 0 24px 80px;
+            }
+
+            .cover {
+                height: 200px;
+            }
+
+            .page-icon {
+                font-size: 60px;
+            }
+
+            .page-title {
+                font-size: 32px;
+            }
+
+            .db-header,
+            .db-row {
+                grid-template-columns: 70px 1fr;
+            }
+
+            .db-header > div:last-child,
+            .db-row > div:last-child {
+                display: none;
+            }
+
+            .property {
+                min-width: 100%;
+            }
+
+            .nav-tabs {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .nav-tab {
+                white-space: nowrap;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cover - 渐变背景 -->
+    <div class="cover" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 70%, #f5576c 100%);"></div>
+
+    <div class="page">
+        <!-- Header -->
+        <header class="page-header">
+            <div class="page-icon">🌊</div>
+            <h1 class="page-title">2026 大连跨年之旅</h1>
+            <p class="page-desc">海边日落 · 俄罗斯风情街 · 跨年烟花 · 祈福迎新</p>
+        </header>
+
+        <!-- Properties -->
+        <div class="properties">
+            <div class="property">
+                <span class="property-name">📅 日期</span>
+                <span class="property-value">12.31 - 1.2（3天2晚）</span>
+            </div>
+            <div class="property">
+                <span class="property-name">🏨 住宿</span>
+                <span class="property-value">富力希尔顿酒店</span>
+            </div>
+            <div class="property">
+                <span class="property-name">🚄 到达</span>
+                <span class="property-value">14:14 大连北站</span>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-bar">
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="switchDay('day1')">🎆 Day 1 跨年夜</button>
+                <button class="nav-tab" onclick="switchDay('day2')">🌊 Day 2 海滨</button>
+                <button class="nav-tab" onclick="switchDay('day3')">🙏 Day 3 祈福</button>
+                <button class="nav-tab" onclick="switchDay('food')">🍽️ 美食</button>
+                <button class="nav-tab" onclick="switchDay('tips')">📋 贴士</button>
+            </div>
+        </nav>
+
+        <!-- Day 1 -->
+        <section class="day-section active" id="day1">
+            <h2>🎆 Day 1 · 跨年狂欢夜</h2>
+            <p class="text-gray">2025年12月31日 周三</p>
+
+            <div class="callout callout-blue">
+                <span class="callout-icon">💡</span>
+                <div class="callout-content">
+                    <strong>今日体验：</strong>海边日落 → 俄罗斯风情街 → 烤肉 → 室内活动 → 街头跨年 → 烟花灯光秀
+                </div>
+            </div>
+
+            <!-- 日落图片 -->
+            <div class="image-banner" style="background: linear-gradient(135deg, #ff9a56 0%, #ff6b6b 50%, #c44569 100%);">
+                <span class="image-banner-text">🌅 冬日海边日落</span>
+            </div>
+
+            <h3>📍 行程安排</h3>
+            <div class="database">
+                <div class="db-header">
+                    <div>时间</div>
+                    <div>活动</div>
+                    <div>标签</div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">14:14</div>
+                    <div class="db-content">
+                        <div class="db-title">🚄 抵达大连北站</div>
+                        <div class="db-desc">打车前往酒店（约25分钟）</div>
+                    </div>
+                    <div class="db-tags"><span class="tag tag-gray">抵达</span></div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">15:15</div>
+                    <div class="db-content">
+                        <div class="db-title">🏨 入住富力希尔顿</div>
+                        <div class="db-desc">中山区人民路66号，放下行李稍作休息</div>
+                    </div>
+                    <div class="db-tags"><span class="tag tag-gray">入住</span></div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">16:00</div>
+                    <div class="db-content">
+                        <div class="db-title">🌅 星海广场看日落</div>
+                        <div class="db-desc">亚洲最大城市广场，冬日海边日落绝美（日落约16:40）</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-red">必去</span>
+                        <span class="tag tag-blue">海边</span>
+                    </div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">18:00</div>
+                    <div class="db-content">
+                        <div class="db-title">🏛️ 俄罗斯风情街</div>
+                        <div class="db-desc">38栋百年俄式建筑，500米异国风情街道</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-purple">风情街</span>
+                        <span class="tag tag-pink">拍照</span>
+                    </div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">19:30</div>
+                    <div class="db-content">
+                        <div class="db-title">🥩 烤肉晚餐</div>
+                        <div class="db-desc">姜虎东白丁 / 九田家黑牛烤肉</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-orange">美食</span>
+                    </div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">21:00</div>
+                    <div class="db-content">
+                        <div class="db-title">🎵 室内跨年活动</div>
+                        <div class="db-desc">【私奔到月球】演唱会 / 商场跨年派对</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-pink">音乐</span>
+                        <span class="tag tag-blue">室内</span>
+                    </div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">22:30</div>
+                    <div class="db-content">
+                        <div class="db-title">🎉 街头跨年狂欢</div>
+                        <div class="db-desc">青泥洼桥 + 天津街，人潮涌动，边走边吃</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-purple">街头</span>
+                    </div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">23:30</div>
+                    <div class="db-content">
+                        <div class="db-title">🎆 跨年倒计时 + 灯光秀</div>
+                        <div class="db-desc">中山广场/东港，"光影童话跨年"三大片区联动</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-red">高光时刻</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>🎆 跨年活动精选</h3>
+            <div class="gallery">
+                <div class="gallery-card">
+                    <div class="gallery-cover" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">🎵</div>
+                    <div class="gallery-body">
+                        <div class="gallery-title">【私奔到月球】演唱会</div>
+                        <div class="gallery-desc">流行摇滚民谣 + 千人倒计时，在音乐中迎接新年</div>
+                        <div class="gallery-meta">🎤 现场音乐</div>
+                    </div>
+                </div>
+                <div class="gallery-card">
+                    <div class="gallery-cover" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">✨</div>
+                    <div class="gallery-body">
+                        <div class="gallery-title">光影童话跨年灯光秀</div>
+                        <div class="gallery-desc">东港/中山广场/星海 三区联动，璀璨夜空</div>
+                        <div class="gallery-meta">🌃 免费观看</div>
+                    </div>
+                </div>
+                <div class="gallery-card">
+                    <div class="gallery-cover" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">🎈</div>
+                    <div class="gallery-body">
+                        <div class="gallery-title">港湾奥特莱斯跨年</div>
+                        <div class="gallery-desc">飘雪 + 心形冷焰火 + 彩带雨，浪漫氛围拉满</div>
+                        <div class="gallery-meta">🎉 免费活动</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day 2 -->
+        <section class="day-section" id="day2">
+            <h2>🌊 Day 2 · 海滨漫步</h2>
+            <p class="text-gray">2026年1月1日 周四 · 新年第一天</p>
+
+            <div class="callout callout-green">
+                <span class="callout-icon">🌊</span>
+                <div class="callout-content">
+                    <strong>今日体验：</strong>新年第一天，去看大连最清澈的海，漫步最美海岸线
+                </div>
+            </div>
+
+            <!-- 海滩图片 -->
+            <div class="image-banner" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 50%, #4facfe 100%);">
+                <span class="image-banner-text">🏖️ 棒棰岛 · 大连最美海滩</span>
+            </div>
+
+            <h3>📍 行程安排</h3>
+            <div class="database">
+                <div class="db-header">
+                    <div>时间</div>
+                    <div>活动</div>
+                    <div>标签</div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">09:00</div>
+                    <div class="db-content">
+                        <div class="db-title">🌅 睡到自然醒</div>
+                        <div class="db-desc">酒店早餐，新年第一天不用赶时间</div>
+                    </div>
+                    <div class="db-tags"><span class="tag tag-gray">休息</span></div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">10:00</div>
+                    <div class="db-content">
+                        <div class="db-title">🐬 老虎滩海洋公园</div>
+                        <div class="db-desc">极地馆看白鲸、海豚，珊瑚馆色彩斑斓</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-blue">5A景区</span>
+                    </div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">12:30</div>
+                    <div class="db-content">
+                        <div class="db-title">🦀 海鲜午餐</div>
+                        <div class="db-desc">品海楼 / 渔人码头，新鲜海鲜现挑现做</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-orange">海鲜</span>
+                    </div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">14:30</div>
+                    <div class="db-content">
+                        <div class="db-title">🏖️ 棒棰岛海滩</div>
+                        <div class="db-desc">大连最清澈的海水，曾是国宾馆所在地</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-red">最美海滩</span>
+                        <span class="tag tag-blue">必去</span>
+                    </div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">16:30</div>
+                    <div class="db-content">
+                        <div class="db-title">🍰 下午茶时光</div>
+                        <div class="db-desc">威尼斯水城咖啡厅 / %Arabica</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-pink">甜点</span>
+                    </div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">17:30</div>
+                    <div class="db-content">
+                        <div class="db-title">🏰 威尼斯水城</div>
+                        <div class="db-desc">欧式建筑群，傍晚灯光亮起时超美</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-purple">夜景</span>
+                    </div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">19:30</div>
+                    <div class="db-content">
+                        <div class="db-title">🥟 大连特色晚餐</div>
+                        <div class="db-desc">船歌鱼水饺 / 老菜馆，必吃焖子、锅包肉</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-orange">特色</span>
+                    </div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">21:00</div>
+                    <div class="db-content">
+                        <div class="db-title">🎵 东港音乐喷泉</div>
+                        <div class="db-desc">水幕光影秀，大连必打卡</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-blue">免费</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>🏖️ 今日亮点</h3>
+            <div class="gallery">
+                <div class="gallery-card">
+                    <div class="gallery-cover" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">🏖️</div>
+                    <div class="gallery-body">
+                        <div class="gallery-title">棒棰岛</div>
+                        <div class="gallery-desc">大连最清澈的海，曾接待多国元首的国宾馆所在地</div>
+                        <div class="gallery-meta">⭐ 冬天人少，拍照绝佳</div>
+                    </div>
+                </div>
+                <div class="gallery-card">
+                    <div class="gallery-cover" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);">🏰</div>
+                    <div class="gallery-body">
+                        <div class="gallery-title">威尼斯水城</div>
+                        <div class="gallery-desc">欧式建筑群，傍晚灯光亮起时如梦如幻</div>
+                        <div class="gallery-meta">⭐ 免费，超出片</div>
+                    </div>
+                </div>
+                <div class="gallery-card">
+                    <div class="gallery-cover" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">🐬</div>
+                    <div class="gallery-body">
+                        <div class="gallery-title">老虎滩海洋公园</div>
+                        <div class="gallery-desc">白鲸、海豚、企鹅，超治愈的海洋世界</div>
+                        <div class="gallery-meta">⭐ 建议提前购票</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day 3 -->
+        <section class="day-section" id="day3">
+            <h2>🙏 Day 3 · 祈福返程</h2>
+            <p class="text-gray">2026年1月2日 周五</p>
+
+            <div class="callout callout-purple">
+                <span class="callout-icon">🙏</span>
+                <div class="callout-content">
+                    <strong>今日体验：</strong>新年登高祈福，在大黑山许下美好愿望
+                </div>
+            </div>
+
+            <!-- 祈福图片 -->
+            <div class="image-banner" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 50%, #f5576c 100%);">
+                <span class="image-banner-text">🙏 登高祈福 · 新年好运</span>
+            </div>
+
+            <h3>📍 行程安排</h3>
+            <div class="database">
+                <div class="db-header">
+                    <div>时间</div>
+                    <div>活动</div>
+                    <div>标签</div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">08:00</div>
+                    <div class="db-content">
+                        <div class="db-title">🚕 出发去大黑山</div>
+                        <div class="db-desc">打车约40分钟</div>
+                    </div>
+                    <div class="db-tags"><span class="tag tag-gray">出发</span></div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">08:45</div>
+                    <div class="db-content">
+                        <div class="db-title">🙏 大黑山登高祈福</div>
+                        <div class="db-desc">观音阁敲钟许愿、朝阳寺，据说非常灵验</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-purple">祈福</span>
+                        <span class="tag tag-green">登高</span>
+                    </div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">11:30</div>
+                    <div class="db-content">
+                        <div class="db-title">🍲 农家午餐</div>
+                        <div class="db-desc">铁锅炖海鲜/大鹅、小鸡炖蘑菇</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-orange">东北菜</span>
+                    </div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">13:30</div>
+                    <div class="db-content">
+                        <div class="db-title">🚕 返回市区</div>
+                        <div class="db-desc">约40分钟车程</div>
+                    </div>
+                    <div class="db-tags"><span class="tag tag-gray">返程</span></div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">14:30</div>
+                    <div class="db-content">
+                        <div class="db-title">☕ 甜点咖啡 · 休息</div>
+                        <div class="db-desc">酒店大堂吧 / Starbucks Reserve</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-pink">甜点</span>
+                    </div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">17:00</div>
+                    <div class="db-content">
+                        <div class="db-title">🚕 前往大连北站</div>
+                        <div class="db-desc">约25分钟，预留充足时间</div>
+                    </div>
+                    <div class="db-tags"><span class="tag tag-gray">返程</span></div>
+                </div>
+                <div class="db-row">
+                    <div class="db-time">18:00+</div>
+                    <div class="db-content">
+                        <div class="db-title">🚄 返程</div>
+                        <div class="db-desc">带着满满回忆和新年祝福</div>
+                    </div>
+                    <div class="db-tags">
+                        <span class="tag tag-blue">再见大连</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>🙏 祈福圣地</h3>
+            <div class="gallery">
+                <div class="gallery-card">
+                    <div class="gallery-cover" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">🙏</div>
+                    <div class="gallery-body">
+                        <div class="gallery-title">大黑山观音阁</div>
+                        <div class="gallery-desc">大连最灵验的祈福地，登高望远心旷神怡</div>
+                        <div class="gallery-meta">⭐ 新年登高迎曙光</div>
+                    </div>
+                </div>
+                <div class="gallery-card">
+                    <div class="gallery-cover" style="background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);">🏯</div>
+                    <div class="gallery-body">
+                        <div class="gallery-title">朝阳寺</div>
+                        <div class="gallery-desc">千年古刹，香火旺盛，祈求平安顺遂</div>
+                        <div class="gallery-meta">⭐ 新年祈福</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 美食 -->
+        <section class="day-section" id="food">
+            <h2>🍽️ 美食地图</h2>
+            <p class="text-gray">烤肉 · 海鲜 · 大连特色 · 甜点</p>
+
+            <!-- 美食banner -->
+            <div class="image-banner" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #ff9a56 100%);">
+                <span class="image-banner-text">🍽️ 大连美食之旅</span>
+            </div>
+
+            <h3>🥩 烤肉推荐 <span class="tag tag-gray">Day 1 晚餐</span></h3>
+            <div class="food-list">
+                <div class="food-item">
+                    <div class="food-icon" style="background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%); display: flex; align-items: center; justify-content: center; font-size: 24px;">🥩</div>
+                    <div class="food-info">
+                        <div class="food-name">姜虎东白丁烤肉</div>
+                        <div class="food-address">📍 中山区友好路</div>
+                        <div class="food-desc">韩式烤肉，五花肉绝绝子，蘸料超香</div>
+                    </div>
+                </div>
+                <div class="food-item">
+                    <div class="food-icon" style="background: linear-gradient(135deg, #ff9a56 0%, #ff6b6b 100%); display: flex; align-items: center; justify-content: center; font-size: 24px;">🍖</div>
+                    <div class="food-info">
+                        <div class="food-name">九田家黑牛烤肉</div>
+                        <div class="food-address">📍 青泥洼桥商圈</div>
+                        <div class="food-desc">和牛品质，环境好，适合跨年大餐</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>🦀 海鲜推荐 <span class="tag tag-gray">Day 2 午餐</span></h3>
+            <div class="food-list">
+                <div class="food-item">
+                    <div class="food-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center; font-size: 24px;">🦀</div>
+                    <div class="food-info">
+                        <div class="food-name">品海楼（老虎滩店）</div>
+                        <div class="food-address">📍 滨海东路72号</div>
+                        <div class="food-desc">老字号，临海，石锅鲍鱼、松鼠鲽鱼</div>
+                    </div>
+                </div>
+                <div class="food-item">
+                    <div class="food-icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); display: flex; align-items: center; justify-content: center; font-size: 24px;">🦐</div>
+                    <div class="food-info">
+                        <div class="food-name">正黄旗海鲜烧烤</div>
+                        <div class="food-address">📍 老虎滩附近</div>
+                        <div class="food-desc">海肠捞饭（招牌）、烤海胆、烤大虾</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout callout-orange">
+                <span class="callout-icon">🦪</span>
+                <div class="callout-content">
+                    <strong>必点海鲜：</strong>蒜蓉烤生蚝 · 烤扇贝 · 清蒸梭子蟹 · 椒盐皮皮虾 · 海胆蒸蛋 · 鲍鱼捞饭
+                </div>
+            </div>
+
+            <h3>🥟 大连特色 <span class="tag tag-gray">Day 2 晚餐</span></h3>
+            <div class="food-list">
+                <div class="food-item">
+                    <div class="food-icon" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); display: flex; align-items: center; justify-content: center; font-size: 24px;">🥟</div>
+                    <div class="food-info">
+                        <div class="food-name">船歌鱼水饺</div>
+                        <div class="food-address">📍 多家分店</div>
+                        <div class="food-desc">海鲜水饺（墨鱼、黄花鱼、鲅鱼），皮薄馅大</div>
+                    </div>
+                </div>
+                <div class="food-item">
+                    <div class="food-icon" style="background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); display: flex; align-items: center; justify-content: center; font-size: 24px;">🍳</div>
+                    <div class="food-info">
+                        <div class="food-name">三鲜焖子老店</div>
+                        <div class="food-address">📍 天津街</div>
+                        <div class="food-desc">正宗大连焖子，配麻酱蒜汁，大连独有</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout callout-pink">
+                <span class="callout-icon">🍜</span>
+                <div class="callout-content">
+                    <strong>必吃大连特色：</strong>焖子 · 锅包肉 · 海鲜水饺 · 咸鱼饼子 · 烤冷面
+                </div>
+            </div>
+
+            <h3>🍰 甜点咖啡</h3>
+            <div class="food-list">
+                <div class="food-item">
+                    <div class="food-icon" style="background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); display: flex; align-items: center; justify-content: center; font-size: 24px;">📚</div>
+                    <div class="food-info">
+                        <div class="food-name">猫的天空之城</div>
+                        <div class="food-address">📍 中山区人民路</div>
+                        <div class="food-desc">书店+咖啡厅，环境有氛围感，适合写明信片</div>
+                    </div>
+                </div>
+                <div class="food-item">
+                    <div class="food-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 24px;">☕</div>
+                    <div class="food-info">
+                        <div class="food-name">%Arabica</div>
+                        <div class="food-address">📍 东港商务区</div>
+                        <div class="food-desc">网红咖啡，拍照出片，咖啡品质一流</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 贴士 -->
+        <section class="day-section" id="tips">
+            <h2>📋 出行贴士</h2>
+            <p class="text-gray">实用信息 · 行前必读</p>
+
+            <div class="callout callout-red">
+                <span class="callout-icon">🧥</span>
+                <div class="callout-content">
+                    <strong>注意保暖！</strong>大连冬季气温约 -5°C 至 3°C，海风较大。跨年夜室外活动多，一定要穿够！
+                </div>
+            </div>
+
+            <h3>📦 行李清单</h3>
+            <div class="checklist">
+                <div class="check-item">羽绒服/厚外套</div>
+                <div class="check-item">毛衣/保暖内衣</div>
+                <div class="check-item">围巾、手套、帽子</div>
+                <div class="check-item">暖贴（多备几片）</div>
+                <div class="check-item">舒适保暖的鞋子</div>
+                <div class="check-item">充电宝</div>
+                <div class="check-item">身份证</div>
+                <div class="check-item">现金（部分小店需要）</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="toggle open">
+                <div class="toggle-header" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="toggle-arrow">▶</span>
+                    <span class="toggle-title">🚇 交通信息</span>
+                </div>
+                <div class="toggle-content">
+                    <p>• 地铁/轻轨覆盖主要景点</p>
+                    <p>• 打车起步价10元</p>
+                    <p>• 跨年夜建议提前预约打车</p>
+                    <p>• 去金石滩乘轻轨3号线约1小时</p>
+                </div>
+            </div>
+
+            <div class="toggle">
+                <div class="toggle-header" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="toggle-arrow">▶</span>
+                    <span class="toggle-title">🎫 门票信息</span>
+                </div>
+                <div class="toggle-content">
+                    <p>• 老虎滩海洋公园：建议提前购票</p>
+                    <p>• 棒棰岛：需购门票</p>
+                    <p>• 大黑山：免费</p>
+                    <p>• 星海广场/威尼斯水城：免费</p>
+                </div>
+            </div>
+
+            <div class="toggle">
+                <div class="toggle-header" onclick="this.parentElement.classList.toggle('open')">
+                    <span class="toggle-arrow">▶</span>
+                    <span class="toggle-title">📸 拍照圣地</span>
+                </div>
+                <div class="toggle-content">
+                    <p>• 星海广场日落 🌅</p>
+                    <p>• 俄罗斯风情街 🏛️</p>
+                    <p>• 棒棰岛海滩 🏖️</p>
+                    <p>• 威尼斯水城夜景 🏰</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-text">🌊 2026 大连跨年之旅 · 愿新年如你所愿 ✨</p>
+        </footer>
+    </div>
+
+    <script>
+        function switchDay(id) {
+            document.querySelectorAll('.day-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            
+            document.getElementById(id).classList.add('active');
+            
+            const tabs = document.querySelectorAll('.nav-tab');
+            const tabIndex = ['day1', 'day2', 'day3', 'food', 'tips'].indexOf(id);
+            tabs[tabIndex].classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
