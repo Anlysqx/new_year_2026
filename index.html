@@ -4,7 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌊 2026 大连跨年之旅</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- 使用国内镜像加速 + 预连接 -->
+    <link rel="preconnect" href="https://fonts.loli.net" crossorigin>
+    <link href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* 字体加载失败时的回退方案 */
+        @font-face {
+            font-family: 'Noto Sans SC Fallback';
+            src: local('PingFang SC'), local('Microsoft YaHei'), local('Helvetica Neue'), local('sans-serif');
+            font-display: swap;
+        }
+    </style>
     <style>
         :root {
             --bg-primary: #ffffff;
@@ -50,7 +60,7 @@
         }
 
         body {
-            font-family: 'Noto Sans SC', ui-sans-serif, -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', ui-sans-serif, -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.7;
@@ -68,7 +78,7 @@
         .cover {
             width: 100%;
             height: 320px;
-            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80') center/cover no-repeat;
+            background: url('./cover.jpg') center/cover no-repeat;
             position: relative;
             overflow: hidden;
         }
